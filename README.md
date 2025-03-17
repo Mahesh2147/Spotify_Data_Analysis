@@ -7,68 +7,72 @@
  * Basic Data Inspection
 
 ```
+# Checks the structure and number of records in the spotify table.
 SELECT * FROM spotify;
 SELECT COUNT(*) FROM public.spotify;
 ```
-   Checks the structure and number of records in the spotify table.
-
+  
 * Distinct Counts
 ```
+#Identifies unique artists, album types, and distribution channels.
 SELECT COUNT(DISTINCT artist) FROM spotify;
 SELECT DISTINCT album_type FROM spotify;
 SELECT DISTINCT channel FROM spotify;
 ```
-   Identifies unique artists, album types, and distribution channels.
-
+   
 * Duration Insights
 ```
+# Finds the longest and shortest track durations.
 SELECT MAX(duration_min) FROM spotify;
 SELECT MIN(duration_min) FROM spotify;
 ```
-   Finds the longest and shortest track durations.
+  
 
 * Data Cleaning
 ```
+# Identifies and removes records with zero duration, which might be data errors.
 SELECT * FROM spotify WHERE duration_min=0;
 DELETE FROM spotify WHERE duration_min=0;
 ```
-   Identifies and removes records with zero duration, which might be data errors.
+  
 
 # 2. Business Analysis Queries
   This section provides insights into Spotify’s business performance and trends.
 
 * Top-Streamed Songs
 ```
+# Identifies tracks with more than 1 billion streams.
 SELECT * FROM spotify WHERE stream > 1000000000;
 ```
-   Identifies tracks with more than 1 billion streams.
+   
 
 * Album Popularity
 ```
+# Ranks albums by their total streaming numbers.
 SELECT album_name, SUM(stream) AS total_streams
 FROM spotify
 GROUP BY album_name
 ORDER BY total_streams DESC;
 ```
-   Ranks albums by their total streaming numbers.
 
 * Most Popular Artists
 ```
+# Determines which artists generate the most streams.
 SELECT artist, SUM(stream) AS total_streams
 FROM spotify
 GROUP BY artist
 ORDER BY total_streams DESC;
 ```
-   Determines which artists generate the most streams.
 
 * Most Played Platforms
 ```
+# Shows which platforms (e.g., Spotify, YouTube, Apple Music) get the most plays.
 SELECT most_played_on, COUNT(*) AS play_count
 FROM spotify
 GROUP BY most_played_on
 ORDER BY play_count DESC;
 ```
-   Shows which platforms (e.g., Spotify, YouTube, Apple Music) get the most plays.
+  
 
 # Business Problems Addressed
 The SQL file tackles several real-world business problems for Spotify, including:
